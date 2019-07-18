@@ -1,12 +1,22 @@
 import { describe, it } from "mocha";
-import foo from "../src/main";
+import * as main from "../src/main";
 
 describe("#foo", () => {
   it("does stuff", () => {
-    foo(true);
+    main.httpTrackEvent(true);
+  });
+});
+
+describe("#axiosClient", () => {
+  context("when true", () => {
+    it("does stuff", () => {
+      main.axiosClient(true);
+    });
   });
 
-  it("does other stuff", () => {
-    foo(false);
+  context("when false", () => {
+    it("does stuff", () => {
+      main.axiosClient(false);
+    });
   });
 });

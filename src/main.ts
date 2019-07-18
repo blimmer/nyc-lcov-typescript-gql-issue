@@ -1,3 +1,4 @@
+import { print } from "graphql";
 import gql from "graphql-tag";
 
 const myMutation = gql`
@@ -26,7 +27,40 @@ const myMutation = gql`
   }
 `;
 
-export default function foo(bool: boolean) {
-  const url = bool ? "https://example.com/foo" : "https://example.com/bar";
-  return url;
+class GraphQlQueryService {
+  constructor(foo: any) {
+    // no-op
+  }
+
+  graphqlQuery(foo: any, bar: any) {
+    print(foo);
+  }
+}
+
+export async function httpTrackEvent(trackingEvent: boolean) {
+  const queryService = new GraphQlQueryService(axiosClient(false));
+  await queryService.graphqlQuery(myMutation, {
+    var1: "foo",
+    var2: "foo",
+    var3: "foo",
+    var4: "foo",
+    var5: "foo",
+    var6: "foo",
+    var7: "foo"
+  });
+}
+
+export function axiosClient(myBool: boolean) {
+  const gatewayURL = myBool ? "example.com" : "example-foo.com";
+  const token = "hello!";
+  const { platform, appVersion } = { platform: "hello", appVersion: "world" };
+
+  return baseClient(gatewayURL, {
+    token,
+    appVersion: `${appVersion}:${platform}:chrome`
+  });
+}
+
+function baseClient(foo: string, opts: {}) {
+  return undefined;
 }
